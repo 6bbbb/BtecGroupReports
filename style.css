@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('bg.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    font-family: Arial, sans-serif;
+    
+}
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* خلفية شفافة */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    border-radius: 8px;
+    backdrop-filter: blur(10px); /* تمويه الخلفية */
+    -webkit-backdrop-filter: blur(10px); /* تمويه الخلفية لمتصفح Safari */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* حدود شبه شفافة */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+/* تأثير زجاجي للعناصر */
+input, textarea, button {
+    width: 95%;
+    padding: 10px;
+    margin: 8px 0px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2); /* خلفية شفافة */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* حدود شبه شفافة */
+    backdrop-filter: blur(10px); /* تمويه الخلفية */
+    -webkit-backdrop-filter: blur(10px); /* تمويه الخلفية لمتصفح Safari */
+    font-size: 16px;
+    color: #333;
+}
+
+/* تصميم الزر للتفاعل */
+button {
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 123, 255, 0.4); /* لون زجاجي للأزرار */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: rgba(0, 86, 179, 0.4); /* لون أغمق عند التمرير */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    backdrop-filter: blur(10px); /* تمويه الخلفية */
+    -webkit-backdrop-filter: blur(10px); /* تمويه الخلفية لمتصفح Safari */
+}
+button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Data to Telegram Bot</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Group Reports</h1>
+        <form id="dataForm">
+            <input type="text" id="name" placeholder="الاسم" required>
+            <input type="text" id="phone" placeholder="رقم الهاتف" required>
+            <input id="description" placeholder="الوصف" rows="3" required></input>
+            <input type="file" id="image" accept="image/*" required>
+            <button type="button" onclick="sendData()">إرسال</button>
+        </form>
+        <div id="result" style="text-align:center; margin-top:10px;"></div>
+    </div>
+
+    <script>
+        async function sendData() {
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const description = document.getElementById("description").value;
+            const imageFile = document.getElementById("image").files[0];
+
+            const BOT_TOKEN = "7531009233:AAFNJdIBm3y7M6AnoqmtcVlS3FEK9XYMTcM"; // استبدلها برمز البوت
+            const CHAT_ID = "6588202696"; // استبدلها بمعرف الشات
+
+            // إرسال الرسالة النصية
+            const message = `الاسم: ${name}\nرقم الهاتف: ${phone}\nالوصف: ${description}`;
+            const textUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
+
+            try {
+                // إرسال الرسالة النصية
+                const textResponse = await fetch(textUrl, { method: "GET" });
+                
+                if (!textResponse.ok) {
+                    document.getElementById("result").innerText = "حدث خطأ أثناء إرسال النص.";
+                    return;
+                }
+
+                // إذا كانت هناك صورة، يتم إرسالها
+                if (imageFile) {
+                    const formData = new FormData();
+                    formData.append("chat_id", CHAT_ID);
+                    formData.append("photo", imageFile);
+
+                    const photoUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`;
+
+                    const photoResponse = await fetch(photoUrl, {
+                        method: "POST",
+                        body: formData
+                    });
+
+                    if (photoResponse.ok) {
+                        document.getElementById("result").innerText = "تم إرسال البيانات والصورة بنجاح!";
+                    } else {
+                        document.getElementById("result").innerText = "تم إرسال النص، لكن حدث خطأ أثناء إرسال الصورة.";
+                    }
+                } else {
+                    document.getElementById("result").innerText = "تم إرسال البيانات بنجاح!";
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("result").innerText = "حدث خطأ في الاتصال.";
+            }
+        }
+    </script>
+
+</body>
+</html>
